@@ -1,0 +1,225 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>罗技鼠标驱动利用脚本 | Tjner0's blog</title><meta name="author" content="Tjner0"><meta name="copyright" content="Tjner0"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="使用罗技鼠标驱动和网上大佬分享的DLL文件，实现鼠标控制">
+<meta property="og:type" content="article">
+<meta property="og:title" content="罗技鼠标驱动利用脚本">
+<meta property="og:url" content="https://tjner0.github.io/2024/06/24/%E7%BD%97%E6%8A%80%E9%BC%A0%E6%A0%87%E9%A9%B1%E5%8A%A8%E5%88%A9%E7%94%A8%E8%84%9A%E6%9C%AC/index.html">
+<meta property="og:site_name" content="Tjner0&#39;s blog">
+<meta property="og:description" content="使用罗技鼠标驱动和网上大佬分享的DLL文件，实现鼠标控制">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Tjner0/blogImage@main/img/OIP.jfif">
+<meta property="article:published_time" content="2024-06-24T10:51:19.000Z">
+<meta property="article:modified_time" content="2024-06-24T15:56:25.008Z">
+<meta property="article:author" content="Tjner0">
+<meta property="article:tag" content="Python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Tjner0/blogImage@main/img/OIP.jfif"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/Tjner0/blogImage@main/img/nero3.jPG"><link rel="canonical" href="https://tjner0.github.io/2024/06/24/%E7%BD%97%E6%8A%80%E9%BC%A0%E6%A0%87%E9%A9%B1%E5%8A%A8%E5%88%A9%E7%94%A8%E8%84%9A%E6%9C%AC/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '罗技鼠标驱动利用脚本',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2024-06-24 23:56:25'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'"><meta name="generator" content="Hexo 7.1.1"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://cdn.jsdelivr.net/gh/Tjner0/blogImage@main/img/nero3.jPG" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">3</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 友链</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/Tjner0/blogImage@main/img/OIP.jfif')"><nav id="nav"><span id="blog-info"><a href="/" title="Tjner0's blog"><span class="site-name">Tjner0's blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 友链</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">罗技鼠标驱动利用脚本</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-06-24T10:51:19.000Z" title="发表于 2024-06-24 18:51:19">2024-06-24</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-06-24T15:56:25.008Z" title="更新于 2024-06-24 23:56:25">2024-06-24</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%BC%80%E5%8F%91/">开发</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>罗技驱动安装包和dll文件链接:<br><a target="_blank" rel="noopener" href="https://github.com/Tjner0/MouseControl">Tjner0&#x2F;MouseControl: 调用罗技键鼠驱动 (github.com)</a><br>首先你得有一个罗技鼠标<br>然后安装我提供的版本的罗技驱动，而且，安装后在设置取消自动更新，不然更新后用不了了。<br><img src="https://cdn.jsdelivr.net/gh/Tjner0/blogImage@main/img/QQ%E5%9B%BE%E7%89%8720240624182744.png"><br>然后开始写调用的脚本代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line">import ctypes</span><br><span class="line">import os</span><br><span class="line"># import pynput</span><br><span class="line"># import winsound</span><br><span class="line"># import random</span><br><span class="line"># import pyautogui</span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line">try:</span><br><span class="line">    # 获取当前绝对路径</span><br><span class="line">    root = os.path.abspath(os.path.dirname(__file__))</span><br><span class="line">    driver = ctypes.CDLL(f&#x27;&#123;root&#125;/logitech.driver.dll&#x27;)</span><br><span class="line">    ok = driver.device_open() == 1  # 该驱动每个进程可打开一个实例</span><br><span class="line">    if not ok:</span><br><span class="line">        print(&#x27;Error, GHUB or LGS driver not found&#x27;)</span><br><span class="line">except FileNotFoundError:</span><br><span class="line">    print(f&#x27;Error, DLL file not found&#x27;)</span><br><span class="line">class Logitech:</span><br><span class="line"> </span><br><span class="line">    class mouse:</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        code: 1:左键, 2:中键, 3:右键</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        WAIT_TIME = 0.5 # 等待时间</span><br><span class="line">        RANDOM_NUM = 0.1 # 最大时间随机数</span><br><span class="line">        @staticmethod</span><br><span class="line">        def press(code):</span><br><span class="line">            if not ok:</span><br><span class="line">                return</span><br><span class="line">            driver.mouse_down(code)</span><br><span class="line"> </span><br><span class="line">        @staticmethod</span><br><span class="line">        def release(code):</span><br><span class="line">            if not ok:</span><br><span class="line">                return</span><br><span class="line">            driver.mouse_up(code)</span><br><span class="line"> </span><br><span class="line">        @staticmethod</span><br><span class="line">        def click(code):</span><br><span class="line">            if not ok:</span><br><span class="line">                return</span><br><span class="line">            driver.mouse_down(code)</span><br><span class="line">            driver.mouse_up(code)</span><br><span class="line"> </span><br><span class="line">        @staticmethod</span><br><span class="line">        def scroll(a):</span><br><span class="line">            &quot;&quot;&quot;</span><br><span class="line">            a:没搞明白</span><br><span class="line">            &quot;&quot;&quot;</span><br><span class="line">            if not ok:</span><br><span class="line">                return</span><br><span class="line">            driver.scroll(a)</span><br><span class="line"> </span><br><span class="line">        @staticmethod</span><br><span class="line">        def move(x, y):</span><br><span class="line">            &quot;&quot;&quot;</span><br><span class="line">            相对移动, 绝对移动需配合 pywin32 的 win32gui 中的 GetCursorPos 计算位置</span><br><span class="line">            pip install pywin32 -i https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line">            x: 水平移动的方向和距离, 正数向右, 负数向左</span><br><span class="line">            y: 垂直移动的方向和距离</span><br><span class="line">            &quot;&quot;&quot;</span><br><span class="line">            if not ok:</span><br><span class="line">                return</span><br><span class="line">            if x == 0 and y == 0:</span><br><span class="line">                return</span><br><span class="line">            driver.moveR(x, y, True)</span><br><span class="line"></span><br><span class="line">class RunMovingTo:</span><br><span class="line">    def __init__(self,move_x_distance,move_y_distance):</span><br><span class="line">        self.move_x_distance = move_x_distance</span><br><span class="line">        self.move_y_distance = move_y_distance</span><br><span class="line">        self.log_mouse = Logitech.mouse</span><br><span class="line">    def quick_move(self):</span><br><span class="line">        self.log_mouse.move(self.move_x_distance,self.move_y_distance)</span><br><span class="line"></span><br><span class="line">def main():</span><br><span class="line">    time.sleep(3)</span><br><span class="line">    #run_lgt = RunMovingTo(-50961,2)</span><br><span class="line">    run_lgt = RunMovingTo(1920,1080)</span><br><span class="line">    # for i in range(110):</span><br><span class="line">    #     time.sleep(1)</span><br><span class="line">    #     run_lgt.quick_move()</span><br><span class="line">    run_lgt.quick_move()</span><br><span class="line">    print(type(run_lgt))</span><br><span class="line">    # time.sleep(1)</span><br><span class="line">    # run_lgt.quick_move()</span><br><span class="line">if __name__==&quot;__main__&quot;:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<p>这里说一下鼠标原理。<br>在工程控制中，对于一个控制系统我们没有办法直接给出移动到哪就直接移动到目标点的方法，鼠标这个控制系统也是，鼠标传感器也就是鼠标底下发光的东西，通过录入在直角坐标系上移动的信息，然后传递给驱动，驱动接收横向和纵向的移动信息驱使鼠标光标移动。因此，这里main函数中我们传入了1920,1080(这是我显示器分辨率)后，运行这份脚本，在sleep3秒期间将鼠标光标推到屏幕左上角也就是坐标(0,0)位置，等待罗技驱动调用后，鼠标光标落点只可能在左上角到右下角这条对角线上。我们没法保证它落在(1920,1080)也就是右下角。因此，这意味着，我们的quick_move传入的信息影响着方向和步长即移动多远。<br>如何实现指定鼠标光标到哪个位置？<br>思路：<br>1.记录当前鼠标光标位置<br>2.计算目标位置-当前位置得到方向<br>3.调用quickmove往这个方向移动。<br>4.循环2和3，直到与目标点之间距离小于1像素值。<br>这里要注意，这个方向肯定是确定的，但是步长需要设置小一点，不然每次quickmove后，鼠标都超过目标点的话，那么这种循环趋近的方法永远也无法达到。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://Tjner0.github.io">Tjner0</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://tjner0.github.io/2024/06/24/%E7%BD%97%E6%8A%80%E9%BC%A0%E6%A0%87%E9%A9%B1%E5%8A%A8%E5%88%A9%E7%94%A8%E8%84%9A%E6%9C%AC/">https://tjner0.github.io/2024/06/24/%E7%BD%97%E6%8A%80%E9%BC%A0%E6%A0%87%E9%A9%B1%E5%8A%A8%E5%88%A9%E7%94%A8%E8%84%9A%E6%9C%AC/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://Tjner0.github.io" target="_blank">Tjner0's blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Python/">Python</a></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/06/24/%E4%BD%BF%E7%94%A8%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E6%A8%A1%E5%9E%8Byolov5%E5%88%B6%E4%BD%9Cai%E8%87%AA%E7%9E%84%E5%A4%96g(%E4%B8%8A)/" title="使用目标检测模型yolov5制作ai自瞄外g(上)"><img class="cover" src="https://cdn.jsdelivr.net/gh/Tjner0/blogImage@main/img/03452a77f80d2323b432995beb42dfab43293747.jpg%401256w_708h_!web-article-pic.avif" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">使用目标检测模型yolov5制作ai自瞄外g(上)</div></div></a></div><div class="next-post pull-right"><a href="/2024/06/24/%E4%BD%BF%E7%94%A8%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E6%A8%A1%E5%9E%8Byolov5%E5%88%B6%E4%BD%9Cai%E8%87%AA%E7%9E%84%E5%A4%96g(%E4%B8%8B)/" title="使用目标检测模型yolov5制作ai自瞄外g(下)"><img class="cover" src="https://cdn.jsdelivr.net/gh/Tjner0/blogImage@main/img/953128b33de3e4170ecd126b6a7d5188286431045.jpg%401256w_708h_!web-article-pic.avif" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">使用目标检测模型yolov5制作ai自瞄外g(下)</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://cdn.jsdelivr.net/gh/Tjner0/blogImage@main/img/nero3.jPG" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Tjner0</div><div class="author-info__description">vx: tjner0;一个热爱生活的人</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">3</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Tjner0"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Tjner0" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:2029471163@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="tencent://message/?uin=757453794&amp;Site=&amp;Menu=yes" target="_blank" title="QQ"><i class="fab fa-qq" style="color: #24292e;"></i></a></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/06/24/%E4%BD%BF%E7%94%A8%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E6%A8%A1%E5%9E%8Byolov5%E5%88%B6%E4%BD%9Cai%E8%87%AA%E7%9E%84%E5%A4%96g(%E4%B8%8A)/" title="使用目标检测模型yolov5制作ai自瞄外g(上)"><img src="https://cdn.jsdelivr.net/gh/Tjner0/blogImage@main/img/03452a77f80d2323b432995beb42dfab43293747.jpg%401256w_708h_!web-article-pic.avif" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="使用目标检测模型yolov5制作ai自瞄外g(上)"/></a><div class="content"><a class="title" href="/2024/06/24/%E4%BD%BF%E7%94%A8%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E6%A8%A1%E5%9E%8Byolov5%E5%88%B6%E4%BD%9Cai%E8%87%AA%E7%9E%84%E5%A4%96g(%E4%B8%8A)/" title="使用目标检测模型yolov5制作ai自瞄外g(上)">使用目标检测模型yolov5制作ai自瞄外g(上)</a><time datetime="2024-06-24T10:51:19.000Z" title="发表于 2024-06-24 18:51:19">2024-06-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/06/24/%E7%BD%97%E6%8A%80%E9%BC%A0%E6%A0%87%E9%A9%B1%E5%8A%A8%E5%88%A9%E7%94%A8%E8%84%9A%E6%9C%AC/" title="罗技鼠标驱动利用脚本"><img src="https://cdn.jsdelivr.net/gh/Tjner0/blogImage@main/img/OIP.jfif" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="罗技鼠标驱动利用脚本"/></a><div class="content"><a class="title" href="/2024/06/24/%E7%BD%97%E6%8A%80%E9%BC%A0%E6%A0%87%E9%A9%B1%E5%8A%A8%E5%88%A9%E7%94%A8%E8%84%9A%E6%9C%AC/" title="罗技鼠标驱动利用脚本">罗技鼠标驱动利用脚本</a><time datetime="2024-06-24T10:51:19.000Z" title="发表于 2024-06-24 18:51:19">2024-06-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/06/24/%E4%BD%BF%E7%94%A8%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E6%A8%A1%E5%9E%8Byolov5%E5%88%B6%E4%BD%9Cai%E8%87%AA%E7%9E%84%E5%A4%96g(%E4%B8%8B)/" title="使用目标检测模型yolov5制作ai自瞄外g(下)"><img src="https://cdn.jsdelivr.net/gh/Tjner0/blogImage@main/img/953128b33de3e4170ecd126b6a7d5188286431045.jpg%401256w_708h_!web-article-pic.avif" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="使用目标检测模型yolov5制作ai自瞄外g(下)"/></a><div class="content"><a class="title" href="/2024/06/24/%E4%BD%BF%E7%94%A8%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E6%A8%A1%E5%9E%8Byolov5%E5%88%B6%E4%BD%9Cai%E8%87%AA%E7%9E%84%E5%A4%96g(%E4%B8%8B)/" title="使用目标检测模型yolov5制作ai自瞄外g(下)">使用目标检测模型yolov5制作ai自瞄外g(下)</a><time datetime="2024-06-24T10:51:19.000Z" title="发表于 2024-06-24 18:51:19">2024-06-24</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2024 By Tjner0</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@5.2.0/instantpage.min.js" type="module"></script><div class="js-pjax"></div><div class="aplayer no-destroy" data-id="9734062855" data-server="netease" data-type="playlist" data-volume="0.5" data-fixed="true" data-autoplay="true"> </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/metingjs/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script></div></body></html>
